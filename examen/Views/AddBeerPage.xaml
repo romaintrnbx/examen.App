@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+			 x:Class="examen.Views.AddBeerPage"
+			 Title="Ajouter une bière">
+
+	<ContentPage.Content>
+		<StackLayout Spacing="10" Padding="20">
+			<Label Text="Nom de la bière:" />
+			<Entry Text="{Binding BeerName}" />
+			<Label Text="Brasserie:" />
+			<Entry Text="{Binding BeerBrewery}" />
+			<Label Text="Description:" />
+			<Editor Text="{Binding BeerDescription}" />
+			<Label Text="Alcool:" />
+			<Entry Text="{Binding BeerAlcool}" />
+			<Label Text="IBU:" />
+			<Entry Text="{Binding BeerIBU}" />
+			<Label Text="EBC:" />
+			<Entry Text="{Binding BeerEBC}" />
+			<StackLayout Orientation="Vertical">
+				<StackLayout Orientation="Horizontal">
+					<Label Text="Style :" VerticalOptions="Center" />
+					<SearchBar x:Name="StyleSearchBar" Placeholder="Rechercher un style"
+                   TextChanged="OnStyleSearchBarTextChanged" SearchCommand="{Binding GetStylesCommand}"
+                   SearchCommandParameter="{Binding Source={x:Reference StyleSearchBar}, Path=Text}"
+                   VerticalOptions="Center" HorizontalOptions="FillAndExpand" />
+				</StackLayout>
+				<ListView ItemsSource="{Binding FilteredStyles}" ItemTemplate="{StaticResource StyleTemplate}" ItemTapped="OnStyleListItemTapped" />
+				<Entry x:Name="NewStyleEntry" Placeholder="Nouveau style" IsVisible="{Binding IsNewStyle}" />
+			</StackLayout>
+			<Entry x:Name="NewStyleEntry" Placeholder="Nouveau style" IsVisible="{Binding IsNewStyle}" />
+			<Entry Placeholder="Nom du verre" Text="{Binding BeerGlass}" />
+			<Entry Placeholder="Type de fermentation" Text="{Binding BeerFermentation}" />
+			<Entry Placeholder="URL de l'image" Text="{Binding BeerPicture}" />
+			<Entry Placeholder="Date de création" Text="{Binding BeerCreatedAt}" />
+			<Entry Placeholder="Brasserie" Text="{Binding BeerBrewery}" />
+			<Entry Placeholder="Formats" Text="{Binding BeerFormats}" />
+			<Button Text="Ajouter" Command="{Binding AddBeerCommand}" BackgroundColor="#007bff" TextColor="White" CornerRadius="5" />
+		</StackLayout>
+	</ContentPage.Content>
+</ContentPage>

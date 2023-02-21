@@ -1,24 +1,25 @@
-﻿namespace examen;
+﻿using examen.ViewModels;
+using examen.Models;
+using examen.Views;
+
+namespace examen;
 
 public partial class MainPage : ContentPage
 {
-	int count = 0;
-
 	public MainPage()
 	{
 		InitializeComponent();
+		BindingContext = new BeerListViewModel();
 	}
 
-	private void OnCounterClicked(object sender, EventArgs e)
+	private void OnBeerSelected(object sender, EventArgs e)
 	{
-		count++;
+		var beer = (Beer)((Button)sender).CommandParameter;
+		Navigation.PushAsync(new BeerDetailPage(beer));
+	}
 
-		if (count == 1)
-			CounterBtn.Text = $"Clicked {count} time";
-		else
-			CounterBtn.Text = $"Clicked {count} times";
-
-		SemanticScreenReader.Announce(CounterBtn.Text);
+	private async void OnAddBeerClicked(object sender, EventArgs e)
+	{
+		await Navigation.PushAsync(new AddBeerPage());
 	}
 }
-

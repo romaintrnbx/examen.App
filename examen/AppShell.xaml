@@ -6,9 +6,8 @@
     xmlns:local="clr-namespace:examen"
     Shell.FlyoutBehavior="Disabled">
 
-    <ShellContent
-        Title="Home"
+	<ShellContent
+        Title="Liste des bières"
         ContentTemplate="{DataTemplate local:MainPage}"
         Route="MainPage" />
-
 </Shell>
