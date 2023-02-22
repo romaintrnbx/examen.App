@@ -123,7 +123,10 @@ namespace examen.ViewModels
 		{
 			_httpClient = new HttpClient();
 			Styles = new ObservableCollection<StylesBeer>();
-			LoadStyles();
+			LoadStyles().ConfigureAwait(false);
+			LoadGlasses().ConfigureAwait(false);
+			LoadFermentations().ConfigureAwait(false);
+			LoadFormats().ConfigureAwait(false);
 		}
 
 		private async Task LoadStyles()
@@ -136,6 +139,74 @@ namespace examen.ViewModels
 				var content = await response.Content.ReadAsStringAsync();
 				var loadedStyles = JsonConvert.DeserializeObject<List<StylesBeer>>(content);
 				Styles = new ObservableCollection<StylesBeer>(loadedStyles);
+			}
+
+			IsBusy = false;
+		}
+
+		private ObservableCollection<GlassBeer> glasses;
+
+		public ObservableCollection<GlassBeer> Glasses
+		{
+			get { return glasses; }
+			set { SetProperty(ref glasses, value); }
+		}
+
+		private async Task LoadGlasses()
+		{
+			IsBusy = true;
+
+			var response = await _httpClient.GetAsync("http://beertime/controller/JSON/glasses_JSON.php");
+			if (response.IsSuccessStatusCode)
+			{
+				var content = await response.Content.ReadAsStringAsync();
+				var loadedGlasses = JsonConvert.DeserializeObject<List<GlassBeer>>(content);
+				Glasses = new ObservableCollection<GlassBeer>(loadedGlasses);
+			}
+
+			IsBusy = false;
+		}
+
+		private ObservableCollection<FermentationsBeer> fermentations;
+
+		public ObservableCollection<FermentationsBeer> Fermentations
+		{
+			get { return fermentations; }
+			set { SetProperty(ref fermentations, value); }
+		}
+
+		private async Task LoadFermentations()
+		{
+			IsBusy = true;
+
+			var response = await _httpClient.GetAsync("http://beertime/controller/JSON/fermentations_JSON.php");
+			if (response.IsSuccessStatusCode)
+			{
+				var content = await response.Content.ReadAsStringAsync();
+				var loadedFermentations = JsonConvert.DeserializeObject<List<FermentationsBeer>>(content);
+				Fermentations = new ObservableCollection<FermentationsBeer>(loadedFermentations);
+			}
+			IsBusy = false;
+		}
+
+		private ObservableCollection<FormatsBeer> _formats;
+
+		public ObservableCollection<FormatsBeer> Formats
+		{
+			get { return _formats; }
+			set { SetProperty(ref _formats, value); }
+		}
+
+		private async Task LoadFormats()
+		{
+			IsBusy = true;
+
+			var response = await _httpClient.GetAsync("http://beertime/controller/JSON/formats_JSON.php");
+			if (response.IsSuccessStatusCode)
+			{
+				var content = await response.Content.ReadAsStringAsync();
+				var loadedFormats = JsonConvert.DeserializeObject<List<FormatsBeer>>(content);
+				Formats = new ObservableCollection<FormatsBeer>(loadedFormats);
 			}
 
 			IsBusy = false;

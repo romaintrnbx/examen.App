@@ -1,42 +1,61 @@
-<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
 			 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-			 x:Class="examen.Views.AddBeerPage"
-			 Title="Ajouter une bière">
+			 x:Class="examen.Views.AddBeerPage">
 
 	<ContentPage.Content>
-		<StackLayout Spacing="10" Padding="20">
-			<Label Text="Nom de la bière:" />
-			<Entry Text="{Binding BeerName}" />
-			<Label Text="Brasserie:" />
-			<Entry Text="{Binding BeerBrewery}" />
-			<Label Text="Description:" />
-			<Editor Text="{Binding BeerDescription}" />
-			<Label Text="Alcool:" />
-			<Entry Text="{Binding BeerAlcool}" />
-			<Label Text="IBU:" />
-			<Entry Text="{Binding BeerIBU}" />
-			<Label Text="EBC:" />
-			<Entry Text="{Binding BeerEBC}" />
-			<StackLayout Orientation="Vertical">
-				<StackLayout Orientation="Horizontal">
-					<Label Text="Style :" VerticalOptions="Center" />
-					<SearchBar x:Name="StyleSearchBar" Placeholder="Rechercher un style"
-                   TextChanged="OnStyleSearchBarTextChanged" SearchCommand="{Binding GetStylesCommand}"
-                   SearchCommandParameter="{Binding Source={x:Reference StyleSearchBar}, Path=Text}"
-                   VerticalOptions="Center" HorizontalOptions="FillAndExpand" />
-				</StackLayout>
-				<ListView ItemsSource="{Binding FilteredStyles}" ItemTemplate="{StaticResource StyleTemplate}" ItemTapped="OnStyleListItemTapped" />
-				<Entry x:Name="NewStyleEntry" Placeholder="Nouveau style" IsVisible="{Binding IsNewStyle}" />
+		<ScrollView>
+			<StackLayout>
+				<Label Text="Name" />
+				<Entry Text="{Binding Name}" />
+
+				<Label Text="Description" />
+				<Entry Text="{Binding Description}" />
+
+				<Label Text="Alcohol percentage" />
+				<Entry Text="{Binding Alcool}" />
+
+				<Label Text="IBU" />
+				<Entry Text="{Binding IBU}" />
+
+				<Label Text="EBC" />
+				<Entry Text="{Binding EBC}" />
+
+				<Label Text="Style:" />
+				<Picker ItemsSource="{Binding Styles}" ItemDisplayBinding="{Binding Name}" SelectedItem="{Binding GlassName}" />
+
+				<Label Text="Verre: " />
+				<Picker ItemsSource="{Binding Glasses}" ItemDisplayBinding="{Binding Name}" SelectedItem="{Binding GlassName}" />
+
+				<Label Text="Fermentation: " />
+				<Picker ItemsSource="{Binding Fermentations}" ItemDisplayBinding="{Binding Name}" SelectedItem="{Binding FermentationName}" />
+
+				<Label Text="Formats:" />
+				<ScrollView Orientation="Horizontal">
+					<StackLayout Orientation="Horizontal">
+						<ListView ItemsSource="{Binding Formats}" HorizontalOptions="FillAndExpand">
+							<ListView.ItemTemplate>
+								<DataTemplate>
+									<ViewCell>
+										<Grid>
+											<Grid.ColumnDefinitions>
+												<ColumnDefinition Width="Auto" />
+												<ColumnDefinition Width="*" />
+											</Grid.ColumnDefinitions>
+											<CheckBox IsChecked="{Binding IsSelected}" Grid.Column="0" />
+											<Label Text="{Binding Name}" Grid.Column="1" />
+										</Grid>
+									</ViewCell>
+								</DataTemplate>
+							</ListView.ItemTemplate>
+						</ListView>
+					</StackLayout>
+				</ScrollView>
+
+				<Label Text="Picture" />
+				<Entry Text="{Binding Picture}" />
+
+				<Button Text="Add Beer" Command="{Binding AddBeerCommand}" IsEnabled="{Binding IsBusy, Converter={StaticResource InverseBooleanConverter}}" />
 			</StackLayout>
-			<Entry x:Name="NewStyleEntry" Placeholder="Nouveau style" IsVisible="{Binding IsNewStyle}" />
-			<Entry Placeholder="Nom du verre" Text="{Binding BeerGlass}" />
-			<Entry Placeholder="Type de fermentation" Text="{Binding BeerFermentation}" />
-			<Entry Placeholder="URL de l'image" Text="{Binding BeerPicture}" />
-			<Entry Placeholder="Date de création" Text="{Binding BeerCreatedAt}" />
-			<Entry Placeholder="Brasserie" Text="{Binding BeerBrewery}" />
-			<Entry Placeholder="Formats" Text="{Binding BeerFormats}" />
-			<Button Text="Ajouter" Command="{Binding AddBeerCommand}" BackgroundColor="#007bff" TextColor="White" CornerRadius="5" />
-		</StackLayout>
+		</ScrollView>
 	</ContentPage.Content>
 </ContentPage>

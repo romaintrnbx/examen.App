@@ -24,7 +24,7 @@ namespace examen.ViewModels
 		public BeerListViewModel()
 		{
 			Beers = new ObservableCollection<Beer>();
-			LoadBeers();
+			LoadBeers().ConfigureAwait(false);
 		}
 
 		private async Task LoadBeers()
