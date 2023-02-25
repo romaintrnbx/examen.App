@@ -53,6 +53,7 @@
 			</StackLayout>
 			<StackLayout Orientation="Horizontal" Margin="0,20,0,0">
 				<Button Text="Modifier" Command="{Binding EditBeerCommand}" />
+				<Button Text="Supprimer" Clicked="OnDeleteButtonClicked" />
 			</StackLayout>
 		</StackLayout>
 	</ScrollView>

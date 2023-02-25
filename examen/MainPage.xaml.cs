@@ -12,6 +12,19 @@ public partial class MainPage : ContentPage
 		BindingContext = new BeerListViewModel();
 	}
 
+	protected override void OnAppearing()
+	{
+		base.OnAppearing();
+		var viewModel = (BeerListViewModel)BindingContext;
+		viewModel.RefreshBeers();
+	}
+
+	private void OnRefreshClicked(object sender, EventArgs e)
+	{
+		var viewModel = (BeerListViewModel)BindingContext;
+		viewModel.RefreshBeers();
+	}
+
 	private void OnBeerSelected(object sender, EventArgs e)
 	{
 		var beer = (Beer)((Button)sender).CommandParameter;

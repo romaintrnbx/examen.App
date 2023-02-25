@@ -40,5 +40,10 @@ namespace examen.ViewModels
 				}
 			}
 		}
+
+		public async void RefreshBeers()
+		{
+			await LoadBeers();
+		}
 	}
 }

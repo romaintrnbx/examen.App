@@ -10,7 +10,6 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using examen.Models;
 using Newtonsoft.Json;
-
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace examen.ViewModels
@@ -108,7 +107,7 @@ namespace examen.ViewModels
 		{
 			IsBusy = true;
 
-			var response = await httpClient.GetAsync("http://beertime/controller/JSON/styles_JSON.php");
+			var response = await httpClient.GetAsync("http://databasebeer/controller/styles_JSON.php");
 			if (response.IsSuccessStatusCode)
 			{
 				var content = await response.Content.ReadAsStringAsync();
@@ -146,7 +145,7 @@ namespace examen.ViewModels
 		{
 			IsBusy = true;
 
-			var response = await httpClient.GetAsync("http://beertime/controller/JSON/glasses_JSON.php");
+			var response = await httpClient.GetAsync("http://databasebeer/controller/glasses_JSON.php");
 			if (response.IsSuccessStatusCode)
 			{
 				var content = await response.Content.ReadAsStringAsync();
@@ -184,7 +183,7 @@ namespace examen.ViewModels
 		{
 			IsBusy = true;
 
-			var response = await httpClient.GetAsync("http://beertime/controller/JSON/fermentations_JSON.php");
+			var response = await httpClient.GetAsync("http://databasebeer/controller/fermentations_JSON.php");
 			if (response.IsSuccessStatusCode)
 			{
 				var content = await response.Content.ReadAsStringAsync();
@@ -221,7 +220,7 @@ namespace examen.ViewModels
 		{
 			IsBusy = true;
 
-			var response = await httpClient.GetAsync("http://beertime/controller/JSON/formats_JSON.php");
+			var response = await httpClient.GetAsync("http://databasebeer/controller/formats_JSON.php");
 			if (response.IsSuccessStatusCode)
 			{
 				var content = await response.Content.ReadAsStringAsync();
@@ -342,7 +341,7 @@ namespace examen.ViewModels
 
 			if (response.IsSuccessStatusCode)
 			{
-				await Application.Current.MainPage.DisplayAlert("Success", "La bière a bien été envoyée", "OK");
+				await Application.Current.MainPage.DisplayAlert("Success", "La bière a bien été ajoutée", "OK");
 				await Application.Current.MainPage.Navigation.PopToRootAsync();
 				// Réinitialisez les valeurs de vos propriétés
 				Name = string.Empty;
