@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "examen.test", "examen.test\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "examen", "examen\examen.csproj", "{64FAA028-3821-476B-B964-D4D1174C5150}"
 EndProject
+Project("{13B669BE-BB05-4DDF-9536-439F39A36129}") = "database_beers", "database_beers\database_beers.phpproj", "{557D10AC-3812-4690-BA99-00EFCE0A8BF1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,6 +25,10 @@ Global
 		{64FAA028-3821-476B-B964-D4D1174C5150}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{64FAA028-3821-476B-B964-D4D1174C5150}.Release|Any CPU.Build.0 = Release|Any CPU
 		{64FAA028-3821-476B-B964-D4D1174C5150}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{557D10AC-3812-4690-BA99-00EFCE0A8BF1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{557D10AC-3812-4690-BA99-00EFCE0A8BF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{557D10AC-3812-4690-BA99-00EFCE0A8BF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{557D10AC-3812-4690-BA99-00EFCE0A8BF1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

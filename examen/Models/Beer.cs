@@ -51,7 +51,5 @@ namespace examen.Models
 
 		[JsonIgnore]
 		public string DisplayPicture => $"C:/wamp64/www/Beer_Time{Picture.Substring(2)}";
-
 	}
-
 }

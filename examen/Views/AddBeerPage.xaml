@@ -1,33 +1,37 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-			 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-			 x:Class="examen.Views.AddBeerPage">
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="using:examen.ViewModels"
+             x:Class="examen.Views.AddBeerPage">
 
 	<ContentPage.Content>
 		<ScrollView>
 			<StackLayout>
-				<Label Text="Name" />
+				<Label Text="Name:" />
 				<Entry Text="{Binding Name}" />
 
-				<Label Text="Description" />
+				<Label Text="Brasserie:" />
+				<Entry Text="{Binding BreweryName}" />
+
+				<Label Text="Description:" />
 				<Entry Text="{Binding Description}" />
 
-				<Label Text="Alcohol percentage" />
+				<Label Text="Alcool:" />
 				<Entry Text="{Binding Alcool}" />
 
-				<Label Text="IBU" />
+				<Label Text="IBU:" />
 				<Entry Text="{Binding IBU}" />
 
-				<Label Text="EBC" />
+				<Label Text="EBC:" />
 				<Entry Text="{Binding EBC}" />
 
 				<Label Text="Style:" />
-				<Picker ItemsSource="{Binding Styles}" ItemDisplayBinding="{Binding Name}" SelectedItem="{Binding GlassName}" />
+				<Picker ItemsSource="{Binding Styles}" ItemDisplayBinding="{Binding Name}" SelectedItem="{Binding StyleName, Mode=TwoWay}" />
 
 				<Label Text="Verre: " />
-				<Picker ItemsSource="{Binding Glasses}" ItemDisplayBinding="{Binding Name}" SelectedItem="{Binding GlassName}" />
+				<Picker ItemsSource="{Binding Glasses}" ItemDisplayBinding="{Binding Name}" SelectedItem="{Binding GlassName, Mode=TwoWay}" />
 
 				<Label Text="Fermentation: " />
-				<Picker ItemsSource="{Binding Fermentations}" ItemDisplayBinding="{Binding Name}" SelectedItem="{Binding FermentationName}" />
+				<Picker ItemsSource="{Binding Fermentations}" ItemDisplayBinding="{Binding Name}" SelectedItem="{Binding FermentationName, Mode=TwoWay}" />
 
 				<Label Text="Formats:" />
 				<ScrollView Orientation="Horizontal">
@@ -51,10 +55,10 @@
 					</StackLayout>
 				</ScrollView>
 
-				<Label Text="Picture" />
-				<Entry Text="{Binding Picture}" />
+				<Label Text="Créée en:" />
+				<Entry Text="{Binding CreatedAt}" />
 
-				<Button Text="Add Beer" Command="{Binding AddBeerCommand}" IsEnabled="{Binding IsBusy, Converter={StaticResource InverseBooleanConverter}}" />
+				<Button Text="Add Beer" Command="{Binding AddBeerCommand}" />
 			</StackLayout>
 		</ScrollView>
 	</ContentPage.Content>

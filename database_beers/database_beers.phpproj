@@ -1,4 +1,7 @@
 <Project Sdk="Devsense.Php.Sdk">
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>557d10ac-3812-4690-ba99-00efce0a8bf1</ProjectGuid>
+  </PropertyGroup>
   <PropertyGroup>
     <EnvName>PHPDev</EnvName>
     <RuntimeVersion>8.0</RuntimeVersion>
