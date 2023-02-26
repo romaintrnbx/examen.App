@@ -13,12 +13,12 @@ namespace examen.ViewModels
 {
 	public class BeerListViewModel : BaseViewModel
 	{
-		private ObservableCollection<Beer> _beers;
+		private ObservableCollection<Beer> beers;
 
 		public ObservableCollection<Beer> Beers
 		{
-			get => _beers;
-			set => SetProperty(ref _beers, value);
+			get => beers;
+			set => SetProperty(ref beers, value);
 		}
 
 		public BeerListViewModel()
@@ -29,21 +29,10 @@ namespace examen.ViewModels
 
 		private async Task LoadBeers()
 		{
-			using (var client = new HttpClient())
-			{
-				var response = await client.GetAsync("http://beertime/controller/JSON/beer_JSON.php");
-				if (response.IsSuccessStatusCode)
-				{
-					var content = await response.Content.ReadAsStringAsync();
-					var beers = JsonConvert.DeserializeObject<ObservableCollection<Beer>>(content);
-					Beers = beers;
-				}
-			}
+			var viewbeers = await Beer.LoadBeers();
+			Beers = new ObservableCollection<Beer>(viewbeers);
 		}
 
-		public async void RefreshBeers()
-		{
-			await LoadBeers();
-		}
+		public async Task RefreshBeers() => await LoadBeers();
 	}
 }

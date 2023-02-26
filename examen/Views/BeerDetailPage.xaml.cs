@@ -22,7 +22,13 @@ public partial class BeerDetailPage : ContentPage
 		bool answer = await DisplayAlert("Confirmation", "Voulez-vous vraiment supprimer cette bière ?", "Oui", "Non");
 		if (answer)
 		{
-			viewModel.DeleteBeer();
+			await viewModel.DeleteBeer();
 		}
+	}
+
+	private async void OnEditButtonClicked(object sender, EventArgs e)
+	{
+		var editBeerPage = new EditBeerPage((Beer)BindingContext);
+		await Navigation.PushAsync(editBeerPage);
 	}
 }

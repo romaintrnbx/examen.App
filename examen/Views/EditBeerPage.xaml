@@ -1,0 +1,65 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="using:examen.ViewModels"
+             x:Class="examen.Views.EditBeerPage">
+
+	<ContentPage.Content>
+		<ScrollView>
+			<StackLayout>
+				<Label Text="Name:" />
+				<Entry Text="{Binding Beer.Name}" />
+
+				<Label Text="Brasserie:" />
+				<Entry Text="{Binding Beer.BreweryName}" />
+
+				<Label Text="Description:" />
+				<Entry Text="{Binding Beer.Description}" />
+
+				<Label Text="Alcool:" />
+				<Entry Text="{Binding Beer.Alcool}" />
+
+				<Label Text="IBU:" />
+				<Entry Text="{Binding Beer.IBU}" />
+
+				<Label Text="EBC:" />
+				<Entry Text="{Binding Beer.EBC}" />
+
+				<Label Text="Style:" />
+				<Picker ItemsSource="{Binding Styles}" ItemDisplayBinding="{Binding Name}" SelectedItem="{Binding Beer.StyleName, Mode=TwoWay}" />
+
+				<Label Text="Verre: " />
+				<Picker ItemsSource="{Binding Glasses}" ItemDisplayBinding="{Binding Name}" SelectedItem="{Binding Beer.GlassName, Mode=TwoWay}" />
+
+				<Label Text="Fermentation: " />
+				<Picker ItemsSource="{Binding Fermentations}" ItemDisplayBinding="{Binding Name}" SelectedItem="{Binding Beer.FermentationName, Mode=TwoWay}" />
+
+				<Label Text="Formats:" />
+				<ScrollView Orientation="Horizontal">
+					<StackLayout Orientation="Horizontal">
+						<ListView ItemsSource="{Binding Formats}" HorizontalOptions="FillAndExpand">
+							<ListView.ItemTemplate>
+								<DataTemplate>
+									<ViewCell>
+										<Grid>
+											<Grid.ColumnDefinitions>
+												<ColumnDefinition Width="Auto" />
+												<ColumnDefinition Width="*" />
+											</Grid.ColumnDefinitions>
+											<CheckBox IsChecked="{Binding IsSelected}" Grid.Column="0" />
+											<Label Text="{Binding Name}" Grid.Column="1" />
+										</Grid>
+									</ViewCell>
+								</DataTemplate>
+							</ListView.ItemTemplate>
+						</ListView>
+					</StackLayout>
+				</ScrollView>
+
+				<Label Text="Créée en:" />
+				<Entry Text="{Binding Beer.CreatedAt}" />
+
+				<Button Text="Save Beer" Command="{Binding SaveBeerCommand}" />
+			</StackLayout>
+		</ScrollView>
+	</ContentPage.Content>
+</ContentPage>

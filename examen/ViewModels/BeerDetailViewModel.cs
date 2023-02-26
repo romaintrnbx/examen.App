@@ -25,15 +25,16 @@ namespace examen.ViewModels
 
 		public BeerDetailViewModel()
 		{
-			DeleteBeerCommand = new Command(DeleteBeer);
+			DeleteBeerCommand = new Command(async () =>
+			{
+				await SelectedBeer.DeleteBeer();
+			});
 		}
 
-		public async void DeleteBeer()
+		public async Task DeleteBeer()
 		{
-			var httpClient = new HttpClient();
-			HttpResponseMessage response = null;
-			response = await httpClient.DeleteAsync($"http://databasebeer/controller/deleteBeer_JSON.php?id={SelectedBeer.Id}");
-			if (response.IsSuccessStatusCode)
+			var isDeleted = await Beer.DeleteBeer(SelectedBeer.Id);
+			if (isDeleted)
 			{
 				await Application.Current.MainPage.DisplayAlert("Success", "La bière a bien été supprimée", "OK");
 				await Application.Current.MainPage.Navigation.PopToRootAsync();

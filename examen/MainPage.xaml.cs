@@ -12,17 +12,17 @@ public partial class MainPage : ContentPage
 		BindingContext = new BeerListViewModel();
 	}
 
-	protected override void OnAppearing()
+	protected override async void OnAppearing()
 	{
 		base.OnAppearing();
 		var viewModel = (BeerListViewModel)BindingContext;
-		viewModel.RefreshBeers();
+		await viewModel.RefreshBeers();
 	}
 
-	private void OnRefreshClicked(object sender, EventArgs e)
+	private async void OnRefreshClicked(object sender, EventArgs e)
 	{
 		var viewModel = (BeerListViewModel)BindingContext;
-		viewModel.RefreshBeers();
+		await viewModel.RefreshBeers();
 	}
 
 	private void OnBeerSelected(object sender, EventArgs e)

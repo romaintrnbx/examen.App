@@ -105,17 +105,8 @@ namespace examen.ViewModels
 
 		private async Task LoadStyles()
 		{
-			IsBusy = true;
-
-			var response = await httpClient.GetAsync("http://databasebeer/controller/styles_JSON.php");
-			if (response.IsSuccessStatusCode)
-			{
-				var content = await response.Content.ReadAsStringAsync();
-				var loadedStyles = JsonConvert.DeserializeObject<List<StylesBeer>>(content);
-				Styles = new ObservableCollection<StylesBeer>(loadedStyles);
-			}
-
-			IsBusy = false;
+			var viewstyles = await StylesBeer.LoadStyles();
+			Styles = new ObservableCollection<StylesBeer>(viewstyles);
 		}
 
 		public StylesBeer StyleName
@@ -143,17 +134,8 @@ namespace examen.ViewModels
 
 		private async Task LoadGlasses()
 		{
-			IsBusy = true;
-
-			var response = await httpClient.GetAsync("http://databasebeer/controller/glasses_JSON.php");
-			if (response.IsSuccessStatusCode)
-			{
-				var content = await response.Content.ReadAsStringAsync();
-				var loadedGlasses = JsonConvert.DeserializeObject<List<GlassBeer>>(content);
-				Glasses = new ObservableCollection<GlassBeer>(loadedGlasses);
-			}
-
-			IsBusy = false;
+			var viewglasses = await GlassBeer.LoadGlasses();
+			Glasses = new ObservableCollection<GlassBeer>(viewglasses);
 		}
 
 		public GlassBeer GlassName
@@ -181,16 +163,8 @@ namespace examen.ViewModels
 
 		private async Task LoadFermentations()
 		{
-			IsBusy = true;
-
-			var response = await httpClient.GetAsync("http://databasebeer/controller/fermentations_JSON.php");
-			if (response.IsSuccessStatusCode)
-			{
-				var content = await response.Content.ReadAsStringAsync();
-				var loadedFermentations = JsonConvert.DeserializeObject<List<FermentationsBeer>>(content);
-				Fermentations = new ObservableCollection<FermentationsBeer>(loadedFermentations);
-			}
-			IsBusy = false;
+			var viewfermentations = await FermentationsBeer.LoadFermentations();
+			Fermentations = new ObservableCollection<FermentationsBeer>(viewfermentations);
 		}
 
 		public FermentationsBeer FermentationName
@@ -218,17 +192,8 @@ namespace examen.ViewModels
 
 		private async Task LoadFormats()
 		{
-			IsBusy = true;
-
-			var response = await httpClient.GetAsync("http://databasebeer/controller/formats_JSON.php");
-			if (response.IsSuccessStatusCode)
-			{
-				var content = await response.Content.ReadAsStringAsync();
-				var loadedFormats = JsonConvert.DeserializeObject<List<FormatsBeer>>(content);
-				Formats = new ObservableCollection<FormatsBeer>(loadedFormats);
-			}
-
-			IsBusy = false;
+			var viewformats = await FormatsBeer.LoadFormats();
+			Formats = new ObservableCollection<FormatsBeer>(viewformats);
 		}
 
 		public int CreatedAt
@@ -318,32 +283,12 @@ namespace examen.ViewModels
 				CreatedAt = CreatedAt
 			};
 
-			var values = new Dictionary<string, object>
+			try
 			{
-				{ "name", newBeer.Name },
-				{ "brewery_name", newBeer.BreweryName },
-				{ "description", newBeer.Description },
-				{ "alcool", newBeer.Alcool },
-				{ "ibu", newBeer.IBU },
-				{ "ebc", newBeer.EBC },
-				{ "styleName", newBeer.StyleName },
-				{ "glassName", newBeer.GlassName },
-				{ "fermentationName", newBeer.FermentationName },
-				{ "formats", newBeer.Formats },
-				{ "createdAt", newBeer.CreatedAt }
-			};
-
-			var json = JsonConvert.SerializeObject(values);
-			var content = new StringContent(json, Encoding.UTF8, "application/json");
-			var request = new HttpRequestMessage(HttpMethod.Post, "http://databasebeer/controller/addBeer_JSON.php");
-			request.Content = content;
-			var response = await httpClient.SendAsync(request);
-
-			if (response.IsSuccessStatusCode)
-			{
+				await newBeer.AddBeer(newBeer);
 				await Application.Current.MainPage.DisplayAlert("Success", "La bière a bien été ajoutée", "OK");
 				await Application.Current.MainPage.Navigation.PopToRootAsync();
-				// Réinitialisez les valeurs de vos propriétés
+
 				Name = string.Empty;
 				Description = string.Empty;
 				Alcool = 0.0;
@@ -355,12 +300,14 @@ namespace examen.ViewModels
 				CreatedAt = 0;
 				BreweryName = string.Empty;
 			}
-			else
+			catch (Exception)
 			{
 				await Application.Current.MainPage.DisplayAlert("Error", "La bière n'a pas été ajoutée, recommencez.", "OK");
 			}
-
-			IsBusy = false;
+			finally
+			{
+				IsBusy = false;
+			}
 		}
 
 		public event PropertyChangedEventHandler PropertyChanged;

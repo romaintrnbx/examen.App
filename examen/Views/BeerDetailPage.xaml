@@ -52,7 +52,7 @@
 				<Label Text="{Binding CreatedAt}" Margin="5,10,0,0" />
 			</StackLayout>
 			<StackLayout Orientation="Horizontal" Margin="0,20,0,0">
-				<Button Text="Modifier" Command="{Binding EditBeerCommand}" />
+				<Button Text="Modifier" Clicked="OnEditButtonClicked" />
 				<Button Text="Supprimer" Clicked="OnDeleteButtonClicked" />
 			</StackLayout>
 		</StackLayout>

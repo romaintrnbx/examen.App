@@ -7,12 +7,12 @@ namespace examen.ViewModels
 	{
 		public event PropertyChangedEventHandler PropertyChanged;
 
-		protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+		protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
 		{
 			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 		}
 
-		protected bool SetProperty<T>(ref T backingStore, T value, [CallerMemberName] string propertyName = null, System.Action onChanged = null)
+		protected bool SetProperty<T>(ref T backingStore, T value, [CallerMemberName] string propertyName = null)
 		{
 			if (EqualityComparer<T>.Default.Equals(backingStore, value))
 			{
@@ -21,11 +21,21 @@ namespace examen.ViewModels
 
 			backingStore = value;
 
-			onChanged?.Invoke();
-
 			OnPropertyChanged(propertyName);
 
 			return true;
 		}
+
+		protected void RaisePropertyChanged([CallerMemberName] string propertyName = null)
+		{
+			OnPropertyChanged(propertyName);
+		}
+
+		public BaseViewModel(string title = "")
+		{
+			Title = title;
+		}
+
+		public string Title { get; set; }
 	}
 }
