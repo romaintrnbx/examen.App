@@ -6,59 +6,60 @@
 	<ContentPage.Content>
 		<ScrollView>
 			<StackLayout>
-				<Label Text="Name:" />
-				<Entry Text="{Binding Beer.Name}" />
+				<Label Text="Nom" />
+				<Entry Text="{Binding SelectedBeer.Name}" />
 
 				<Label Text="Brasserie:" />
-				<Entry Text="{Binding Beer.BreweryName}" />
+				<Entry Text="{Binding SelectedBeer.BreweryName}" />
 
 				<Label Text="Description:" />
-				<Entry Text="{Binding Beer.Description}" />
+				<Entry Text="{Binding SelectedBeer.Description}" />
 
 				<Label Text="Alcool:" />
-				<Entry Text="{Binding Beer.Alcool}" />
+				<Entry Text="{Binding SelectedBeer.Alcool}" />
 
 				<Label Text="IBU:" />
-				<Entry Text="{Binding Beer.IBU}" />
+				<Entry Text="{Binding SelectedBeer.IBU}" />
 
 				<Label Text="EBC:" />
-				<Entry Text="{Binding Beer.EBC}" />
+				<Entry Text="{Binding SelectedBeer.EBC}" />
 
 				<Label Text="Style:" />
-				<Picker ItemsSource="{Binding Styles}" ItemDisplayBinding="{Binding Name}" SelectedItem="{Binding Beer.StyleName, Mode=TwoWay}" />
+				<Picker ItemsSource="{Binding Styles}" ItemDisplayBinding="{Binding Name}" SelectedItem="{Binding SelectedStyle, Mode=TwoWay}" />
 
 				<Label Text="Verre: " />
-				<Picker ItemsSource="{Binding Glasses}" ItemDisplayBinding="{Binding Name}" SelectedItem="{Binding Beer.GlassName, Mode=TwoWay}" />
+				<Picker ItemsSource="{Binding Glasses}" ItemDisplayBinding="{Binding Name}" SelectedItem="{Binding SelectedGlass, Mode=TwoWay}" />
 
 				<Label Text="Fermentation: " />
-				<Picker ItemsSource="{Binding Fermentations}" ItemDisplayBinding="{Binding Name}" SelectedItem="{Binding Beer.FermentationName, Mode=TwoWay}" />
+				<Picker ItemsSource="{Binding Fermentations}" ItemDisplayBinding="{Binding Name}" SelectedItem="{Binding SelectedFerm, Mode=TwoWay}" />
 
 				<Label Text="Formats:" />
-				<ScrollView Orientation="Horizontal">
-					<StackLayout Orientation="Horizontal">
-						<ListView ItemsSource="{Binding Formats}" HorizontalOptions="FillAndExpand">
-							<ListView.ItemTemplate>
-								<DataTemplate>
-									<ViewCell>
-										<Grid>
-											<Grid.ColumnDefinitions>
-												<ColumnDefinition Width="Auto" />
-												<ColumnDefinition Width="*" />
-											</Grid.ColumnDefinitions>
-											<CheckBox IsChecked="{Binding IsSelected}" Grid.Column="0" />
-											<Label Text="{Binding Name}" Grid.Column="1" />
-										</Grid>
-									</ViewCell>
-								</DataTemplate>
-							</ListView.ItemTemplate>
-						</ListView>
-					</StackLayout>
-				</ScrollView>
+				<Grid>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="AUto" />
+						<ColumnDefinition Width="Auto" />
+					</Grid.ColumnDefinitions>
+					<Grid.RowDefinitions>
+						<RowDefinition Height="Auto" />
+					</Grid.RowDefinitions>
+					<ListView ItemsSource="{Binding SelectedFormats}">
+						<ListView.ItemTemplate>
+							<DataTemplate>
+								<ViewCell>
+									<StackLayout Orientation="Horizontal">
+										<CheckBox IsChecked="{Binding IsSelected}" />
+										<Label Text="{Binding Name}" />
+									</StackLayout>
+								</ViewCell>
+							</DataTemplate>
+						</ListView.ItemTemplate>
+					</ListView>
+				</Grid>
 
 				<Label Text="Créée en:" />
-				<Entry Text="{Binding Beer.CreatedAt}" />
+				<Entry Text="{Binding SelectedBeer.CreatedAt}" />
 
-				<Button Text="Save Beer" Command="{Binding SaveBeerCommand}" />
+				<Button Text="Save Beer" Command="{Binding UpdateBeerCommand}" />
 			</StackLayout>
 		</ScrollView>
 	</ContentPage.Content>

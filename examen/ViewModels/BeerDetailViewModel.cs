@@ -2,6 +2,7 @@
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using examen.Models;
+using examen.Views;
 
 namespace examen.ViewModels
 {
@@ -9,6 +10,7 @@ namespace examen.ViewModels
 	{
 		private Beer _selectedBeer;
 		public ICommand DeleteBeerCommand { get; set; }
+		public ICommand EditBeerCommand { get; set; }
 
 		public Beer SelectedBeer
 		{
@@ -28,6 +30,10 @@ namespace examen.ViewModels
 			DeleteBeerCommand = new Command(async () =>
 			{
 				await SelectedBeer.DeleteBeer();
+			});
+			EditBeerCommand = new Command(async () =>
+			{
+				await Application.Current.MainPage.Navigation.PushAsync(new EditBeerPage(SelectedBeer));
 			});
 		}
 

@@ -104,6 +104,37 @@ namespace examen.Models
 			}
 		}
 
+		public async Task UpdateBeer(Beer newBeer)
+		{
+			var values = new Dictionary<string, object>
+			{
+				{ "id", newBeer.Id },
+				{ "name", newBeer.Name },
+				{ "brewery_name", newBeer.BreweryName },
+				{ "description", newBeer.Description },
+				{ "alcool", newBeer.Alcool },
+				{ "ibu", newBeer.IBU },
+				{ "ebc", newBeer.EBC },
+				{ "styleName", newBeer.StyleName },
+				{ "glassName", newBeer.GlassName },
+				{ "fermentationName", newBeer.FermentationName },
+				{ "formats", newBeer.Formats },
+				{ "createdAt", newBeer.CreatedAt }
+			};
+
+			var httpClient = new HttpClient();
+			var json = JsonConvert.SerializeObject(values);
+			var content = new StringContent(json, Encoding.UTF8, "application/json");
+			var response = await httpClient.PostAsync("http://databasebeer/controller/updateBeer_JSON.php", content);
+
+			if (response.IsSuccessStatusCode)
+			{
+				var responseJson = await response.Content.ReadAsStringAsync();
+				var result = JsonConvert.DeserializeObject<Beer>(responseJson);
+				await Task.FromResult(result);
+			}
+		}
+
 		public static async Task<bool> DeleteBeer(int beerId)
 		{
 			var httpClient = new HttpClient();
