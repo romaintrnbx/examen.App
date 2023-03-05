@@ -20,7 +20,7 @@ namespace examen.Models
 		public string Description { get; set; }
 
 		[JsonProperty("alcool")]
-		public double Alcool { get; set; }
+		public float Alcool { get; set; }
 
 		[JsonProperty("ibu")]
 		public int IBU { get; set; }

@@ -19,7 +19,7 @@ namespace examen.ViewModels
 		private string name;
 		private string breweryName;
 		private string description;
-		private double alcool;
+		private float alcool;
 		private int ibu;
 		private int ebc;
 		private ObservableCollection<StylesBeer> styles = new ObservableCollection<StylesBeer>();
@@ -63,7 +63,7 @@ namespace examen.ViewModels
 			}
 		}
 
-		public double Alcool
+		public float Alcool
 		{
 			get => alcool;
 			set
@@ -291,7 +291,7 @@ namespace examen.ViewModels
 
 				Name = string.Empty;
 				Description = string.Empty;
-				Alcool = 0.0;
+				Alcool = 0;
 				IBU = 0;
 				EBC = 0;
 				StyleName.Name = string.Empty;

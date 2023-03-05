@@ -284,7 +284,7 @@ namespace examen.ViewModels
 				SelectedBeer.Id = 0;
 				SelectedBeer.Name = string.Empty;
 				SelectedBeer.Description = string.Empty;
-				SelectedBeer.Alcool = 0.0;
+				SelectedBeer.Alcool = 0;
 				SelectedBeer.IBU = 0;
 				SelectedBeer.EBC = 0;
 				SelectedStyle.Name = string.Empty;
