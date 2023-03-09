@@ -285,7 +285,7 @@ namespace examen.ViewModels
 
 			try
 			{
-				await newBeer.AddBeer(newBeer);
+				await Beer.AddBeer(newBeer);
 				await Application.Current.MainPage.DisplayAlert("Success", "La bière a bien été ajoutée", "OK");
 				await Application.Current.MainPage.Navigation.PopToRootAsync();
 

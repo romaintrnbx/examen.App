@@ -50,7 +50,7 @@ namespace examen.Models
 		public string Formats { get; set; }
 
 		[JsonIgnore]
-		public string DisplayPicture => $"C:/wamp64/www/Beer_Time{Picture.Substring(2)}";
+		public string DisplayPicture => $"C:/wamp64/www/Beer_Time{Picture[2..]}";
 
 		public static async Task<List<Beer>> LoadBeers()
 		{
@@ -74,7 +74,7 @@ namespace examen.Models
 			return new List<Beer>();
 		}
 
-		public async Task AddBeer(Beer newBeer)
+		public static async Task AddBeer(Beer newBeer)
 		{
 			var values = new Dictionary<string, object>
 			{
@@ -104,7 +104,7 @@ namespace examen.Models
 			}
 		}
 
-		public async Task UpdateBeer(Beer newBeer)
+		public static async Task UpdateBeer(Beer newBeer)
 		{
 			var values = new Dictionary<string, object>
 			{
@@ -138,8 +138,7 @@ namespace examen.Models
 		public static async Task<bool> DeleteBeer(int beerId)
 		{
 			var httpClient = new HttpClient();
-			HttpResponseMessage response = null;
-			response = await httpClient.DeleteAsync($"http://databasebeer/controller/deleteBeer_JSON.php?id={beerId}");
+			HttpResponseMessage response = await httpClient.DeleteAsync($"http://databasebeer/controller/deleteBeer_JSON.php?id={beerId}");
 			if (response.IsSuccessStatusCode)
 			{
 				return true;
@@ -153,8 +152,7 @@ namespace examen.Models
 		public async Task DeleteBeer()
 		{
 			var httpClient = new HttpClient();
-			HttpResponseMessage response = null;
-			response = await httpClient.DeleteAsync($"http://databasebeer/controller/deleteBeer_JSON.php?id={Id}");
+			HttpResponseMessage response = await httpClient.DeleteAsync($"http://databasebeer/controller/deleteBeer_JSON.php?id={Id}");
 			if (response.IsSuccessStatusCode)
 			{
 				await Application.Current.MainPage.DisplayAlert("Success", "La bière a bien été supprimée", "OK");

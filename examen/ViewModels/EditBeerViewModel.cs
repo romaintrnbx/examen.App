@@ -277,7 +277,7 @@ namespace examen.ViewModels
 
 			try
 			{
-				await newBeer.UpdateBeer(newBeer);
+				await Beer.UpdateBeer(newBeer);
 				await Application.Current.MainPage.DisplayAlert("Success", "La bière a bien été modifié", "OK");
 				await Application.Current.MainPage.Navigation.PopToRootAsync();
 
