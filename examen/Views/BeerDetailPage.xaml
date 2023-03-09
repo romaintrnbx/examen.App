@@ -13,43 +13,30 @@
 		<StackLayout Margin="20">
 			<Image Source="{Binding DisplayPicture}" HeightRequest="200" />
 			<Label Text="{Binding Name}" FontSize="Large" Margin="0,20" />
-			<StackLayout Orientation="Horizontal">
-				<Label Text="Brasserie:  " FontAttributes="Bold" Margin="0,10,0,0" />
-				<Label Text="{Binding BreweryName}" FontAttributes="Bold" Margin="5,10,0,0" />
-			</StackLayout>
+			<Label Text="{Binding BreweryName}" FontAttributes="Bold" Margin="0,10,0,0" />
 			<Label Text="{Binding Description}" Margin="0,10,0,0" />
-			<StackLayout Orientation="Horizontal">
-				<Label Text="IBU:  " FontAttributes="Bold" Margin="0,10,0,0" />
-				<Label Text="{Binding IBU}" Margin="5,10,0,0" />
+			<StackLayout Orientation="Horizontal" Margin="0,10,0,0">
+				<Label Text="Style: " FontAttributes="Bold" Margin="0,0,5,0" />
+				<Label Text="{Binding StyleName}" Margin="0,0,10,0" />
+				<Label Text="Alcool: " FontAttributes="Bold" Margin="0,0,5,0" />
+				<Label Text="{Binding Alcool}" Margin="0,0,2,0" />
+				<Label Text="%" Margin="0,0,10,0" />
+				<Label Text="IBU: " FontAttributes="Bold" Margin="0,0,5,0" />
+				<Label Text="{Binding IBU}" Margin="0,0,10,0" />
+				<Label Text="EBC: " FontAttributes="Bold" Margin="0,0,5,0" />
+				<Label Text="{Binding EBC}" />
 			</StackLayout>
-			<StackLayout Orientation="Horizontal">
-				<Label Text="EBC:  " FontAttributes="Bold" Margin="0,10,0,0" />
-				<Label Text="{Binding EBC}" Margin="5,10,0,0" />
+			<StackLayout Orientation="Horizontal" Margin="0,10,0,0">
+				<Label Text="Verre: " FontAttributes="Bold" Margin="0,0,5,0" />
+				<Label Text="{Binding GlassName}" Margin="0,0,10,0" />
+				<Label Text="Fermentation: " FontAttributes="Bold" Margin="0,0,5,0" />
+				<Label Text="{Binding FermentationName}" />
 			</StackLayout>
-			<StackLayout Orientation="Horizontal">
-				<Label Text="Alcool:  " FontAttributes="Bold" Margin="0,10,0,0" />
-				<Label Text="{Binding Alcool}" Margin="5,10,0,0" />
-				<Label Text="%" Margin="2,10,0,0" />
-			</StackLayout>
-			<StackLayout Orientation="Horizontal">
-				<Label Text="Style:  " FontAttributes="Bold" Margin="0,10,0,0" />
-				<Label Text="{Binding StyleName}" Margin="5,10,0,0" />
-			</StackLayout>
-			<StackLayout Orientation="Horizontal">
-				<Label Text="Verre: " FontAttributes="Bold" Margin="0,10,0,0" />
-				<Label Text="{Binding GlassName}" Margin="5,10,0,0" />
-			</StackLayout>
-			<StackLayout Orientation="Horizontal">
-				<Label Text="Fermentation: " FontAttributes="Bold" Margin="0,10,0,0" />
-				<Label Text="{Binding FermentationName}" Margin="5,10,0,0" />
-			</StackLayout>
-			<StackLayout Orientation="Horizontal">
-				<Label Text="Formats: " FontAttributes="Bold" Margin="0,10,0,0" />
-				<Label Text="{Binding Formats}" Margin="5,10,0,0" />
-			</StackLayout>
-			<StackLayout Orientation="Horizontal">
-				<Label Text="Créé en: " FontAttributes="Bold" Margin="0,10,0,0" />
-				<Label Text="{Binding CreatedAt}" Margin="5,10,0,0" />
+			<StackLayout Orientation="Horizontal" Margin="0,10,0,0">
+				<Label Text="Formats: " FontAttributes="Bold" Margin="0,0,5,0" />
+				<Label Text="{Binding Formats}" Margin="0,0,10,0" />
+				<Label Text="Créé en: " FontAttributes="Bold" Margin="0,0,5,0" />
+				<Label Text="{Binding CreatedAt}" />
 			</StackLayout>
 			<StackLayout Orientation="Horizontal" Margin="0,20,0,0">
 				<Button Text="Modifier" Clicked="OnEditButtonClicked" />
@@ -57,4 +44,5 @@
 			</StackLayout>
 		</StackLayout>
 	</ScrollView>
+
 </ContentPage>
