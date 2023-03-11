@@ -5,10 +5,6 @@
              x:Class="examen.Views.BeerDetailPage"
              Title="{Binding Name}">
 
-	<ContentPage.BindingContext>
-		<local:BeerDetailViewModel />
-	</ContentPage.BindingContext>
-
 	<ScrollView>
 		<StackLayout Margin="20">
 			<Image Source="{Binding DisplayPicture}" HeightRequest="200" />
@@ -44,5 +40,4 @@
 			</StackLayout>
 		</StackLayout>
 	</ScrollView>
-
 </ContentPage>
