@@ -1,4 +1,4 @@
-Scénario de test de l'application.
+Scénarios de test de l'application.
 
 Créer une bière:
 1. Sur la page d'accueil cliquez sur "Ajouter une bière"
