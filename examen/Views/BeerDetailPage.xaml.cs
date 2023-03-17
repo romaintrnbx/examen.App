@@ -6,7 +6,7 @@ namespace examen.Views;
 
 public partial class BeerDetailPage : ContentPage
 {
-	private BeerDetailViewModel viewModel;
+	private readonly BeerDetailViewModel viewModel;
 
 	public BeerDetailPage(Beer selectedBeer)
 	{

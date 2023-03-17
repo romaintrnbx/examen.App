@@ -59,7 +59,7 @@
 				<Label Text="Créée en:" />
 				<Entry Text="{Binding SelectedBeer.CreatedAt}" />
 
-				<Button Text="Save Beer" Command="{Binding UpdateBeerCommand}" />
+				<Button Text="Sauvegarder la bière" Command="{Binding UpdateBeerCommand}" />
 			</StackLayout>
 		</ScrollView>
 	</ContentPage.Content>

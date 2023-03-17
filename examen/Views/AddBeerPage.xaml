@@ -58,7 +58,7 @@
 				<Label Text="Créée en:" />
 				<Entry Text="{Binding CreatedAt}" />
 
-				<Button Text="Add Beer" Command="{Binding AddBeerCommand}" />
+				<Button Text="Ajouter la bière" Command="{Binding AddBeerCommand}" />
 			</StackLayout>
 		</ScrollView>
 	</ContentPage.Content>

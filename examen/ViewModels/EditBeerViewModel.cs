@@ -26,7 +26,6 @@ namespace examen.ViewModels
 		private FermentationsBeer fermentationName;
 		private FermentationsBeer _selectedFerm;
 		private ObservableCollection<FormatsBeer> formats = new ObservableCollection<FormatsBeer>();
-		private readonly HttpClient httpClient;
 		private bool isBusy;
 
 		public Beer SelectedBeer
@@ -221,7 +220,6 @@ namespace examen.ViewModels
 
 		public EditBeerViewModel(Beer selectedBeer)
 		{
-			httpClient = new HttpClient();
 			UpdateBeerCommand = new Command(async () => await UpdateBeer());
 			SelectedBeer = selectedBeer;
 			Styles = new ObservableCollection<StylesBeer>();
